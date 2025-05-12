@@ -15,7 +15,7 @@ export function DashboardHeader() {
   return (
     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between glass-card p-6 rounded-lg border border-white/10 backdrop-blur-md">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-gradient">Overview Dashboard</h1>
+        <h1 className="text-2xl font-bold tracking-tight glow-text-blue">Overview Dashboard</h1>
         <p className="text-sm text-muted-foreground">
           Analytics and insights for your workflow
         </p>
