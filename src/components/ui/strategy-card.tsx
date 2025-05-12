@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { AlertTriangle, CircleCheck, Info } from "lucide-react";
@@ -13,21 +14,27 @@ interface StrategyCardProps {
 }
 
 const ICONS = {
-  info: <Info className="h-5 w-5 text-blue-500" />,
-  warning: <AlertTriangle className="h-5 w-5 text-yellow-500" />,
-  success: <CircleCheck className="h-5 w-5 text-green-500" />,
+  info: <Info className="h-5 w-5 text-blue-500 dark:text-blue-400" />,
+  warning: <AlertTriangle className="h-5 w-5 text-yellow-500 dark:text-yellow-400" />,
+  success: <CircleCheck className="h-5 w-5 text-green-500 dark:text-green-400" />,
 };
 
 const GRADIENTS = {
-  info: "from-blue-500/20 to-transparent",
-  warning: "from-yellow-500/20 to-transparent",
-  success: "from-green-500/20 to-transparent",
+  info: "from-blue-500/20 to-transparent dark:from-blue-500/30",
+  warning: "from-yellow-500/20 to-transparent dark:from-yellow-500/30",
+  success: "from-green-500/20 to-transparent dark:from-green-500/30",
 };
 
 const BORDERS = {
-  info: "border-blue-500/20",
-  warning: "border-yellow-500/20",
-  success: "border-green-500/20",
+  info: "border-blue-500/20 dark:border-blue-400/20",
+  warning: "border-yellow-500/20 dark:border-yellow-400/20",
+  success: "border-green-500/20 dark:border-green-400/20",
+};
+
+const GLOWS = {
+  info: "dark:shadow-[0_0_15px_rgba(59,130,246,0.15)]",
+  warning: "dark:shadow-[0_0_15px_rgba(251,191,36,0.15)]",
+  success: "dark:shadow-[0_0_15px_rgba(52,211,153,0.15)]",
 };
 
 export function StrategyCard({
@@ -45,8 +52,9 @@ export function StrategyCard({
   return (
     <Card
       className={cn(
-        "relative overflow-hidden border bg-card/50 p-6 transition-shadow hover:shadow-xl",
+        "relative overflow-hidden border glass-card transition-all hover:shadow-xl",
         BORDERS[icon],
+        GLOWS[icon],
         className
       )}
     >
@@ -61,14 +69,14 @@ export function StrategyCard({
       </div>
 
       {/* Strategy number badge */}
-      <div className="flex justify-end mb-8">
+      <div className="flex justify-end mb-8 p-6 pb-0">
         <span className="px-4 py-1 rounded-full bg-background/50 backdrop-blur-sm border border-border text-sm font-medium">
           Strategy #{number}
         </span>
       </div>
 
       {/* Avatar + Name */}
-      <div className="flex items-center gap-4 mb-4">
+      <div className="flex items-center gap-4 mb-4 px-6">
         <img
           src={avatar}
           alt={name}
@@ -81,7 +89,7 @@ export function StrategyCard({
       </div>
 
       {/* Quote */}
-      <blockquote className="text-[1.05rem] leading-relaxed text-muted-foreground">
+      <blockquote className="text-[1.05rem] leading-relaxed text-muted-foreground p-6 pt-0">
         <span className="">{firstSentence} </span>
         {remainingQuote && (
           <span className="text-foreground font-medium">{remainingQuote}</span>

@@ -68,11 +68,11 @@ export default {
 				warning: '#FBBF24',
 				danger: '#EF4444',
 				info: '#3B82F6',
-				'chart-1': '#6366F1',
-				'chart-2': '#8B5CF6',
-				'chart-3': '#EC4899',
-				'chart-4': '#F43F5E',
-				'chart-5': '#10B981'
+				'chart-1': 'hsl(var(--chart-1))',
+				'chart-2': 'hsl(var(--chart-2))',
+				'chart-3': 'hsl(var(--chart-3))',
+				'chart-4': 'hsl(var(--chart-4))',
+				'chart-5': 'hsl(var(--chart-5))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -120,8 +120,35 @@ export default {
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+			},
+			textShadow: {
+				sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
+				DEFAULT: '0 2px 4px rgba(0, 0, 0, 0.05)',
+				lg: '0 8px 16px rgba(0, 0, 0, 0.05)',
+			},
+			boxShadow: {
+				'glow-sm': '0 0 10px rgba(255, 255, 255, 0.1)',
+				'glow': '0 0 15px rgba(255, 255, 255, 0.15)',
+				'glow-lg': '0 0 25px rgba(255, 255, 255, 0.2)',
+				'glow-blue': '0 0 15px rgba(59, 130, 246, 0.3)',
+				'glow-green': '0 0 15px rgba(52, 211, 153, 0.3)',
+				'glow-yellow': '0 0 15px rgba(251, 191, 36, 0.3)',
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		// Add text shadow plugin
+		function ({ addUtilities, theme, e }) {
+			const textShadows = theme('textShadow', {});
+			const utilities = Object.entries(textShadows).map(([key, value]) => {
+				return {
+					[`.${e(`text-shadow${key === 'DEFAULT' ? '' : `-${key}`}`)}`]: {
+						textShadow: value,
+					},
+				};
+			});
+			addUtilities(utilities);
+		},
+	],
 } satisfies Config;

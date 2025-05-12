@@ -1,3 +1,4 @@
+
 import {
   Card,
   CardContent,
@@ -28,7 +29,7 @@ const activityData = [
 
 export function ActivityChart() {
   return (
-    <Card className="col-span-4">
+    <Card className="col-span-4 glass-card card-hover">
       <CardHeader>
         <CardTitle>Activity Overview</CardTitle>
         <CardDescription>
@@ -36,13 +37,27 @@ export function ActivityChart() {
         </CardDescription>
       </CardHeader>
       <CardContent className="px-2">
-        <div className="h-[300px] w-full">
+        <div className="h-[300px] w-full chart-highlight">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={activityData}
               margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+              <defs>
+                <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="hsl(var(--chart-1))" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="hsl(var(--chart-1))" stopOpacity={0.1}/>
+                </linearGradient>
+                <linearGradient id="colorSessions" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="hsl(var(--chart-2))" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="hsl(var(--chart-2))" stopOpacity={0.1}/>
+                </linearGradient>
+                <linearGradient id="colorPageviews" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="hsl(var(--chart-3))" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="hsl(var(--chart-3))" stopOpacity={0.1}/>
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" className="stroke-muted/40" />
               <XAxis
                 dataKey="date"
                 tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
@@ -52,10 +67,10 @@ export function ActivityChart() {
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "hsl(var(--card), #fff)",
-                  borderColor: "hsl(var(--border), #e5e7eb)",
-                  borderRadius: "var(--radius, 0.5rem)",
-                  fontSize: "0.875rem",
+                  backgroundColor: "hsl(var(--card))",
+                  borderColor: "hsl(var(--border))",
+                  borderRadius: "var(--radius)",
+                  boxShadow: "0 0 15px rgba(255, 255, 255, 0.05)",
                 }}
               />
               <Legend
@@ -68,25 +83,25 @@ export function ActivityChart() {
                 type="monotone"
                 dataKey="users"
                 stackId="1"
-                stroke="hsl(var(--chart-1, #3b82f6))"
-                fill="hsl(var(--chart-1, #3b82f6))"
-                fillOpacity={0.4}
+                stroke="hsl(var(--chart-1))"
+                fill="url(#colorUsers)"
+                strokeWidth={2}
               />
               <Area
                 type="monotone"
                 dataKey="sessions"
                 stackId="1"
-                stroke="hsl(var(--chart-2, #10b981))"
-                fill="hsl(var(--chart-2, #10b981))"
-                fillOpacity={0.4}
+                stroke="hsl(var(--chart-2))"
+                fill="url(#colorSessions)"
+                strokeWidth={2}
               />
               <Area
                 type="monotone"
                 dataKey="pageviews"
                 stackId="1"
-                stroke="hsl(var(--chart-3, #f59e0b))"
-                fill="hsl(var(--chart-3, #f59e0b))"
-                fillOpacity={0.4}
+                stroke="hsl(var(--chart-3))"
+                fill="url(#colorPageviews)"
+                strokeWidth={2}
               />
             </AreaChart>
           </ResponsiveContainer>
