@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Navbar } from "@/components/layout/Navbar";
+import { Navigation } from "@/components/layout/Navigation";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { MetricsGrid } from "@/components/dashboard/MetricsGrid";
@@ -24,8 +24,8 @@ export function Dashboard() {
   }, [toast]);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <div className="min-h-screen bg-background bg-gradient-to-b from-background to-background/90 dark:from-[#000511] dark:to-[#0c1221]">
+      <Navigation />
       <div className="flex">
         <Sidebar />
         <div className="flex-1 p-4 md:p-6">

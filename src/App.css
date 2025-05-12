@@ -6,23 +6,74 @@
   text-align: center;
 }
 
+/* Dark Mode Enhancements */
 .dark body {
-  background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 1));
+  background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 1));
+  background-attachment: fixed;
+}
+
+/* Starfield effect enhancement */
+.dark body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: radial-gradient(white, rgba(255, 255, 255, 0) 2px);
+  background-size: 100px 100px;
+  background-position: 0 0;
+  opacity: 0.1;
+  pointer-events: none;
 }
 
 .dark .chart-highlight {
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.15));
 }
 
+/* Glow text effects */
 .dark .glow-text-blue {
-  text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
 }
 
 .dark .glow-text-green {
-  text-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
+  text-shadow: 0 0 8px rgba(52, 211, 153, 0.6);
 }
 
 .dark .glow-text-yellow {
-  text-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
 }
 
+/* Glassmorphism card enhancement */
+.glass-card {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+.glass-card:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Strategy card color gradients */
+.strategy-gradient-yellow {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, transparent 80%);
+}
+
+.strategy-gradient-blue {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, transparent 80%);
+}
+
+.strategy-gradient-green {
+  background: linear-gradient(135deg, rgba(52, 211, 153, 0.2) 0%, transparent 80%);
+}
